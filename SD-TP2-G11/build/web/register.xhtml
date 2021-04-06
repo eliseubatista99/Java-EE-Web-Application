@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <style>
+        body,h1 {font-family: "Raleway", Arial, sans-serif}
+        h1 {letter-spacing: 6px}
+        .w3-row-padding img {margin-bottom: 12px}
+    </style>
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="Tables.css"></link>
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-content" style="max-width:80%">
+            <!-- Header -->
+            <header class="w3-panel w3-center w3-opacity"></header>
+            <center>
+                <table class="logo">
+                    <tr>
+                        <td><img src="logo.png" height="100" width="100"/></td>
+                        <td><h1 class="w3-xlarge">Materiais de som e imagem</h1></td>
+                    </tr>
+                </table>
+            </center>
+            <div class="w3-padding-32">
+                <div class="w3-bar w3-border">
+                    <h:link outcome="index.xhtml" class="w3-bar-item w3-button" value="Início"/>
+                    <h:link outcome="entrar.xhtml" class="w3-bar-item w3-button" value="Entrar"/>
+                    <h:link outcome="register.xhtml" class="w3-bar-item w3-button w3-light-grey" value="Registar"/>
+                    <h:link outcome="inventoryunlogged.xhtml" class="w3-bar-item w3-button w3-hide-small" value="Lista de Materiais"/>
+                </div>
+            </div>
+        </div>
+    </h:head>
+    <h:body>
+        <center>
+            <h1 style="margin-bottom: 3%">Página de Registo do Cliente </h1>
+            <h:form>
+                <table class="dados">
+                    <tr>
+                        <td align="left" style="margin-right: 5%">Nome de Utilizador:</td>
+                        <td align="right"><h:inputText maxlength="20" style="width: 100%;" binding="#{username}"/></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="margin-right: 5%">Palavra-passe:</td>
+                        <td align="right"><h:inputSecret maxlength="20" style="width: 100%"  binding="#{password}"/></td>
+                    </tr> 
+                    <tr>
+                        <td align="left" style="margin-right: 5%">Confirmar Palavra-passe:</td>
+                        <td align="right"><h:inputSecret maxlength="20" style="width: 100%" binding="#{password2}"/></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="margin-right: 5%">Primeiro nome:</td>
+                        <td align="right"><h:inputText maxlength="15" style="width: 100%" binding="#{pnome}"/></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="margin-right: 5%">Último nome:</td>
+                        <td align="right"><h:inputText maxlength="15" style="width: 100%" binding="#{unome}"/></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="margin-right: 5%">Email:</td>
+                        <td align="right"><h:inputText maxlength="30" style="width: 100%" binding="#{email}"/></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="margin-right: 5%">Género:</td>
+                        <td align="right>">
+
+                            <h:selectOneRadio value="#{user.gen}" style="width: 100%">
+                                <f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+                                <f:selectItem itemValue="Feminino" itemLabel="Feminino" />
+                                <f:selectItem itemValue="Outro" itemLabel="Outro" />
+                            </h:selectOneRadio> 
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="margin-right: 5%">Número de Telefone:</td>
+                        <td align="right">
+                            <select style="width: 25%">
+                                <option>+351</option>
+                            </select>
+                            <h:inputText style="width: 70%; margin-left: 5%" binding="#{phone}"/>
+                        </td>
+                    </tr>
+
+                </table>
+                <br></br>
+                <h:commandButton value="Register" style="display:inline-block; margin-bottom:-4%; border-style:solid; border-width: thin;" class="w3-bar-item w3-button w3-light-grey" action="#{user.Registo(username.value, password.value, password2.value, email.value, pnome.value,unome.value, phone.value)}"/>
+            </h:form>
+        </center>
+        <p style="margin:5%"> </p>
+        <center>
+            <span jsfc="h:messages" style="color:red; font-size: 12px;" /> 
+        </center>
+    </h:body>
+</html>

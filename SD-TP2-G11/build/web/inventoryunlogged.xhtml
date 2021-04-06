@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css%22%3E"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css%22%3E"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    
+    <style>
+        body,h1 {font-family: "Raleway", Arial, sans-serif}
+        h1 {letter-spacing: 6px}
+        .w3-row-padding img {margin-bottom: 12px}
+    </style>
+    <f:metadata>
+        <f:viewAction action="#{equipamento.atualizarTabelaEquipamentos()}" />
+    </f:metadata>
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="Tables.css"></link>
+        <h:form>
+            <!-- !PAGE CONTENT! -->
+            <div class="w3-content" style="max-width:80%">
+                <!-- Header -->
+                <header class="w3-panel w3-center w3-opacity"></header>
+                <center>
+                    <table class="logo">
+                        <tr>
+                            <td><img src="logo.png" height="100" width="100"/></td>
+                            <td><h1 class="w3-xlarge">Materiais de som e imagem</h1></td>
+                        </tr>
+                    </table>
+                </center>
+                <div class="w3-padding-32">
+                    <div class="w3-bar w3-border">
+                        <h:link outcome="index.xhtml" class="w3-bar-item w3-button" value="Início"/>
+                        <h:link outcome="entrar.xhtml" class="w3-bar-item w3-button" value="Entrar"/>
+                        <h:link outcome="register.xhtml" class="w3-bar-item w3-button" value="Registar"/>
+                        <h:commandButton value="Lista de Materiais" class="w3-bar-item w3-button w3-light-grey" action="#{equipamento.atualizarEquipamentos(false)}"/>   
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </h:head>
+    <h:body>
+        <center>
+            <h1 style="margin-bottom: 3%">Lista de Materias</h1>
+            <h:dataTable value="#{equipamento.equipamentos}" class="dados" var="produto" border="1">
+                <h:column>
+                    <f:facet name="header" >
+                        <h:outputText value="Equipamento ID"/>
+                    </f:facet>
+                    <h:outputText style="padding: 20px;" value="#{produto.idmat}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Tipo de Equipamento"/>
+                    </f:facet>
+                    <h:outputText value="#{produto.tipo}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome do Equipamento"/>
+                    </f:facet>
+                    <h:outputText value="#{produto.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Preço"/>
+                    </f:facet>
+                    <h:outputText value="#{produto.apresentarprec(produto.preco)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Descrição"/>
+                    </f:facet>
+                    <!-- o fn:replace substitui as ocorrencias de \n por <br> -->
+                    <h:outputText  value="#{fn:replace(produto.apresentadesc(produto.descricao),'\\n','&lt;br/&gt;')}" escape="false"/>
+                </h:column>
+            </h:dataTable>
+        </center>
+        <p style="margin:5%"> </p>
+    </h:body>
+</html>
